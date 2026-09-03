@@ -8,13 +8,13 @@
 <meta property="og:title" content="Fiesta de oficina · Karabot">
 <meta property="og:description" content="Crea tu personaje, habla con el equipo y enciende la fiesta. Jueves 17 de Septiembre.">
 <!-- IMPORTANTE: cambia la linea de abajo por la URL real de tu portada (ver instrucciones) -->
-<meta property="og:image" content="https://github.com/Karabot-stack/Invite_Fiesta_Ofi/blob/main/Portada%20fiesta.png">
+<meta property="og:image" content="https://karabot-stack.github.io/Invite_Fiesta_Ofi/Portadafiesta.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Fiesta de oficina · Karabot">
 <meta name="twitter:description" content="Crea tu personaje, habla con el equipo y enciende la fiesta.">
-<meta name="twitter:image" content="https://github.com/Karabot-stack/Invite_Fiesta_Ofi/blob/main/Portada%20fiesta.png">
+<meta name="twitter:image" content="https://karabot-stack.github.io/Invite_Fiesta_Ofi/Portadafiesta.png">
 <meta name="theme-color" content="#FF00AA">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,7 +32,8 @@ canvas#game{width:100%;height:100%;display:block;background:#1f2126}
   border:2px solid var(--wht);border-radius:7px;box-shadow:inset 0 0 14px rgba(255,0,170,.28),0 6px 22px rgba(0,0,0,.6)}
 .shadow{text-shadow:2px 2px 0 #000}
 .screen{position:absolute;inset:0;z-index:40;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:20px;padding:20px;text-align:center;background:radial-gradient(120% 100% at 50% 0%,#2a0640 0%,#05000c 68%)}
+  gap:20px;padding:20px;text-align:center;overflow-y:auto;background:radial-gradient(120% 100% at 50% 0%,#2a0640 0%,#05000c 68%)}
+#creator{justify-content:flex-start;gap:12px;padding-top:max(16px,env(safe-area-inset-top))}
 .hidden{display:none!important}
 h1{font-family:var(--f);font-size:clamp(26px,4.6vw,46px);font-weight:400;line-height:1.08;letter-spacing:1px;
   color:var(--fx);text-shadow:3px 3px 0 #000}
@@ -51,7 +52,7 @@ button{font-family:var(--f);cursor:pointer;border:0;color:inherit;background:non
 .btn:focus-visible,.arrow:focus-visible,.pad button:focus-visible{outline:2px solid var(--fx);outline-offset:3px}
 #creator{background:radial-gradient(120% 100% at 50% 20%,#33074d 0%,#05000c 70%)}
 #cwrap{display:flex;gap:18px;align-items:stretch;flex-wrap:wrap;justify-content:center}
-#pvWrap{position:relative;width:210px;height:230px;display:flex;align-items:flex-end;
+#pvWrap{position:relative;width:190px;height:198px;display:flex;align-items:flex-end;flex:0 0 auto;
   justify-content:center;overflow:hidden;background:#ffffff}
 #pvWrap::after{content:"";position:absolute;left:50%;bottom:20px;transform:translateX(-50%);width:150px;height:30px;
   background:radial-gradient(closest-side,rgba(255,0,170,.42),rgba(255,0,170,0))}
@@ -107,11 +108,12 @@ button{font-family:var(--f);cursor:pointer;border:0;color:inherit;background:non
 #dialog .next{position:absolute;right:16px;bottom:7px;font-size:19px;color:var(--fx);animation:bl .7s steps(2,end) infinite}
 #touch{position:absolute;inset:0;z-index:28;pointer-events:none;display:none}
 #touch.on{display:block}
-.pad{position:absolute;left:12px;bottom:12px;display:grid;grid-template-columns:repeat(3,44px);grid-template-rows:repeat(3,44px);pointer-events:auto}
+.pad{position:absolute;left:14px;bottom:18px;display:grid;grid-template-columns:repeat(3,46px);grid-template-rows:repeat(3,46px);pointer-events:auto}
 .pad button{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.28);border-radius:4px;font-size:17px}
 .pad button:active{background:var(--fx)}
-#aBtn{position:absolute;right:16px;bottom:96px;width:68px;height:68px;border-radius:50%;pointer-events:auto;
-  background:linear-gradient(180deg,#ff3fc0,#a1006c);border:2px solid #fff;color:#fff;font-family:var(--f);font-size:20px;letter-spacing:1px}
+#aBtn{position:absolute;right:16px;bottom:26px;width:72px;height:72px;border-radius:50%;pointer-events:auto;
+  background:linear-gradient(180deg,#ff3fc0,#a1006c);border:2px solid #fff;color:#fff;font-family:var(--f);font-size:20px;letter-spacing:1px;
+  display:flex;align-items:center;justify-content:center;text-align:center;line-height:1}
 #cardWrap{position:absolute;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;
   padding:20px;opacity:0;visibility:hidden;pointer-events:none;
   background:radial-gradient(120% 100% at 50% 50%,rgba(60,9,108,.55),rgba(5,0,12,.82));
@@ -153,12 +155,24 @@ button{font-family:var(--f);cursor:pointer;border:0;color:inherit;background:non
   #partyBtn{width:min(300px,66%);bottom:16px}#cwrap{gap:10px}}
 /* movil en vertical: la caja de fiesta sube a la linea del tercio inferior */
 @media (orientation:portrait) and (hover:none){
-  #partyBtn{bottom:33dvh;width:min(330px,80%)}
-  #againBtn{bottom:33dvh}
-  #dialog{bottom:calc(33dvh - 4px)}
+  #partyBtn{bottom:26dvh;width:min(300px,72%);padding:8px 12px 10px 28px}
+  #partyBtn .plabel{font-size:24px;letter-spacing:3px}
+  #partyBtn .phint{font-size:13px;margin-top:0}
+  #partyBtn .pcur{top:16px;left:9px;font-size:12px}
+  #gauge{height:11px;margin-top:5px}
+  #againBtn{bottom:26dvh;font-size:20px;padding:6px 18px 8px}
+  #dialog{bottom:calc(26dvh - 4px)}
 }
 /* movil en horizontal: todo el HUD mas compacto */
 @media (orientation:landscape) and (max-height:560px){
+  #creator{gap:8px;padding:8px 12px}
+  #creator h2{margin:0}
+  #pvWrap{width:132px;height:150px}
+  #cwrap{gap:10px}
+  .rows{padding:8px 10px;gap:3px}
+  .ftitle{font-size:26px;letter-spacing:6px}
+  .logo.big{width:201px;height:60px;margin:0}
+
   #partyBtn{width:min(232px,30%);bottom:10px;padding:7px 12px 9px 26px}
   #partyBtn .plabel{font-size:23px;letter-spacing:4px}
   #partyBtn .phint{font-size:14px;letter-spacing:1px;margin-top:0}
