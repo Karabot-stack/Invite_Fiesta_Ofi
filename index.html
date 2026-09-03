@@ -52,20 +52,20 @@ button{font-family:var(--f);cursor:pointer;border:0;color:inherit;background:non
 .btn:focus-visible,.arrow:focus-visible,.pad button:focus-visible{outline:2px solid var(--fx);outline-offset:3px}
 #creator{background:radial-gradient(120% 100% at 50% 20%,#33074d 0%,#05000c 70%)}
 #cwrap{display:flex;gap:18px;align-items:stretch;flex-wrap:wrap;justify-content:center}
-#pvWrap{position:relative;width:190px;height:198px;display:flex;align-items:flex-end;flex:0 0 auto;
+#pvWrap{position:relative;width:210px;height:230px;display:flex;align-items:flex-end;flex:0 0 auto;
   justify-content:center;overflow:hidden;background:#ffffff}
 #pvWrap::after{content:"";position:absolute;left:50%;bottom:20px;transform:translateX(-50%);width:150px;height:30px;
   background:radial-gradient(closest-side,rgba(255,0,170,.42),rgba(255,0,170,0))}
 #pv{position:relative;margin-bottom:6px}
-.rows{display:grid;gap:4px;align-content:center;min-width:240px;padding:14px 12px}
-.row{display:grid;grid-template-columns:20px 40px 1fr 40px;align-items:center;gap:6px;padding:5px 6px;border-radius:4px}
+.rows{display:grid;gap:3px;align-content:center;min-width:230px;padding:10px 12px}
+.row{display:grid;grid-template-columns:18px 38px 1fr 38px;align-items:center;gap:6px;padding:4px 6px;border-radius:4px}
 .row.sel{background:rgba(255,0,170,.16)}
 .cur{color:var(--fx);font-size:14px;visibility:hidden}
 .row.sel .cur{visibility:visible;animation:bl .7s steps(2,end) infinite}
-.arrow{font-family:var(--f);font-size:22px;color:var(--wht);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.3);border-radius:3px;height:32px}
+.arrow{font-family:var(--f);font-size:19px;color:var(--wht);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.3);border-radius:3px;height:28px}
 .arrow:active{background:var(--fx);color:#000}
 .dots{display:flex;gap:4px;justify-content:center;flex-wrap:wrap}
-.dot{width:9px;height:9px;background:rgba(255,255,255,.22);border-radius:1px}
+.dot{width:8px;height:8px;background:rgba(255,255,255,.22);border-radius:1px}
 .dot.on{background:var(--fx);box-shadow:0 0 6px var(--fx)}
 #hud{position:absolute;inset:0;z-index:30;pointer-events:none}
 #room{position:absolute;top:12px;left:14px;padding:6px 12px;line-height:0}
@@ -167,9 +167,11 @@ button{font-family:var(--f);cursor:pointer;border:0;color:inherit;background:non
 @media (orientation:landscape) and (max-height:560px){
   #creator{gap:8px;padding:8px 12px}
   #creator h2{margin:0}
-  #pvWrap{width:132px;height:150px}
+  #pvWrap{width:168px;height:184px}
   #cwrap{gap:10px}
-  .rows{padding:8px 10px;gap:3px}
+  .rows{padding:6px 10px;gap:2px}
+  .arrow{height:24px;font-size:16px}
+  .row{padding:2px 6px}
   .ftitle{font-size:26px;letter-spacing:6px}
   .logo.big{width:201px;height:60px;margin:0}
 
@@ -1014,13 +1016,13 @@ function refresh(){
   for(let i=0;i<rows.length;i++)rows[i].className="row"+(i===sel?" sel":"");
   pvx.clearRect(0,0,200,220);
   const sp=buildPlayer();
-  pvx.save();pvx.translate(100,204);
+  pvx.save();pvx.translate(100,214);
   pvx.save();pvx.scale(1,.30);                   // sombra: primero, debajo de los pies
   const sg=pvx.createRadialGradient(0,0,0,0,0,62);
   sg.addColorStop(0,"rgba(255,0,170,.62)");sg.addColorStop(.5,"rgba(255,0,170,.30)");
   sg.addColorStop(1,"rgba(255,0,170,0)");
   pvx.fillStyle=sg;pvx.beginPath();pvx.arc(0,0,62,0,7);pvx.fill();pvx.restore();
-  if(sp)drawSprite(pvx,sp,0,0,"S",-1,2.2,1);     // el personaje encima
+  if(sp)drawSprite(pvx,sp,0,0,"S",-1,2.4,1);     // el personaje encima
   pvx.restore();}
 const randomize=()=>{for(const o of OPTS)P.cfg[o.k]=(Math.random()*o.n())|0;refresh();blip(1180,.09,.05);};
 
